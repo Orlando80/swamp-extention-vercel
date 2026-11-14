@@ -31,7 +31,7 @@ swamp behavior create @orlando/preview-auditor preview-audit \
 swamp behavior run preview-audit scan --json
 ```
 
-The report is stored as the `report` resource, instance `latest`, with 30-day lifetime. API requests use the Vercel v7 deployments endpoint and have a 30-second timeout, honor Swamp cancellation, do not follow redirects and never include tokens in reports. Rate-limit and API failures are not retried automatically. GitHub lookup failures become review findings with sanitized categories; an invalid Vercel inventory aborts the scan. Pagination must explicitly provide a next cursor or null, so missing pagination is never reported as a complete scan.
+The report is stored as the `report` resource, instance `audit`, with 30-day lifetime. API requests use the Vercel v7 deployments endpoint and have a 30-second timeout, honor Swamp cancellation, do not follow redirects and never include tokens in reports. Rate-limit and API failures are not retried automatically. GitHub lookup failures become review findings with sanitized categories; an invalid Vercel inventory aborts the scan. Pagination must explicitly provide a next cursor or null, so missing pagination is never reported as a complete scan.
 
 ## Validation
 

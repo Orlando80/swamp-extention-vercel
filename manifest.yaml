@@ -1,7 +1,12 @@
 manifestVersion: 1
 name: "@orlando/preview-auditor"
-version: "2026.11.14.1"
+version: "2026.11.14.3"
+releaseNotes: "Fix audit scans failing because the report instance name 'latest' is reserved; use 'audit' instead."
 license: MIT
+visibility: public
+additionalFiles:
+  - README.md
+  - LICENSE
 repository: "https://github.com/Orlando80/swamp-extention-vercel"
 description: "Read-only Vercel preview expiry audit using GitHub pull request evidence"
 models:

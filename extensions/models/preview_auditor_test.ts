@@ -31,7 +31,7 @@ Deno.test("scan writes a schema-valid report and returns its handle", async () =
     assert.equal(writes.length, 1);
     assert.equal(logs.length, 2);
     assert.equal(JSON.stringify(logs).includes("fake"), false);
-    assert.deepEqual(result, { dataHandles: [{ name: "latest" }] });
+    assert.deepEqual(result, { dataHandles: [{ name: "audit" }] });
   } finally {
     globalThis.fetch = original;
   }

@@ -3,7 +3,21 @@ import { audit } from "./audit_core.ts";
 /** Read-only Vercel preview auditor for the @orlando collective. */
 export const model = {
   type: "@orlando/preview-auditor",
-  version: "2026.11.14.1",
+  version: "2026.11.14.3",
+  upgrades: [
+    {
+      toVersion: "2026.11.14.2",
+      description:
+        "Package README and LICENSE; preserve existing configuration",
+      upgradeAttributes: (old: Record<string, unknown>) => old,
+    },
+    {
+      toVersion: "2026.11.14.3",
+      description:
+        "Use the audit report instance name; preserve existing configuration",
+      upgradeAttributes: (old: Record<string, unknown>) => old,
+    },
+  ],
   globalArguments: z.object({
     projectId: z.string().min(1),
     teamId: z.string().optional(),
@@ -51,7 +65,7 @@ export const model = {
           context.signal,
         );
         context.signal?.throwIfAborted();
-        const handle = await context.writeResource("report", "latest", report);
+        const handle = await context.writeResource("report", "audit", report);
         context.logger?.info(
           "Preview audit completed: {count} deployments, {candidates} candidates, complete={complete}",
           {
