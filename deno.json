@@ -1,1 +1,12 @@
-{"compilerOptions":{"noImplicitAny":false}}
+{
+  "compilerOptions": {
+    "noImplicitAny": false
+  },
+  "lint": {
+    "rules": {
+      "exclude": [
+        "no-import-prefix"
+      ]
+    }
+  }
+}

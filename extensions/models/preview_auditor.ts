@@ -1,6 +1,6 @@
 import { z } from "npm:zod@4";
 import { audit } from "./audit_core.ts";
-/** Local draft namespace; replace before publishing. */
+/** Read-only Vercel preview auditor for the @orlando collective. */
 export const model = {
   type: "@orlando/preview-auditor",
   version: "2026.11.14.1",
@@ -43,8 +43,23 @@ export const model = {
         "Inspect Vercel deployments and linked GitHub PRs without modifying either service",
       arguments: z.object({}),
       async execute(_args, context) {
-        const report = await audit(context.globalArgs);
+        context.logger?.info("Starting preview audit");
+        const report = await audit(
+          context.globalArgs,
+          fetch,
+          Date.now(),
+          context.signal,
+        );
+        context.signal?.throwIfAborted();
         const handle = await context.writeResource("report", "latest", report);
+        context.logger?.info(
+          "Preview audit completed: {count} deployments, {candidates} candidates, complete={complete}",
+          {
+            count: report.deployments.length,
+            candidates: report.candidates,
+            complete: report.complete,
+          },
+        );
         return { dataHandles: [handle] };
       },
     },
