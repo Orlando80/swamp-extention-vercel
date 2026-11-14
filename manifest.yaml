@@ -1,0 +1,11 @@
+manifestVersion: 1
+name: "@orlando/preview-auditor"
+version: "2026.11.14.1"
+license: MIT
+description: "Read-only Vercel preview expiry audit using GitHub pull request evidence"
+models:
+  - preview_auditor.ts
+labels:
+  - vercel
+  - github
+  - monitoring
